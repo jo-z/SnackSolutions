@@ -8,7 +8,7 @@ const Group = require("./models/Group");
 const Rating = require("./models/Rating");
 //associations could go here!
 
-Group.belongsTo(User, { foreignKey: "ownerId" });
+Group.belongsTo(User, { as: "owner" });
 Group.belongsToMany(User);
 User.belongsToMany(Group);
 
