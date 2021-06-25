@@ -16,9 +16,23 @@ export const setUsersWithRatings = (groupId) => {
 			const users = (
 				await axios.get(`/api/group/${groupId}/ratings`, { id: 1 })
 			).data;
+			users.sort((a, b) => a.id - b.id);
+			users.forEach((val) => {
+				val.snacks.sort((a, b) => a.id - b.id);
+			});
 			dispatch(getUsersWithRatings(users));
 		} catch (err) {
 			console.error(err);
 		}
 	};
 };
+
+//reducer
+export default function (state = [], action) {
+	switch (action.type) {
+		case GET_USERS_WITH_RATINGS:
+			return action.users;
+		default:
+			return state;
+	}
+}
