@@ -27,9 +27,28 @@ router.get(
 				);
 			else {
 				const users = await User.findAll({
+					attributes: ["id", "username"],
 					include: [
-						{ model: Group, where: { id: req.params.groupId } },
-						{ model: Snack },
+						{
+							model: Group,
+							where: { id: req.params.groupId },
+							attributes: [],
+						},
+						{
+							model: Snack,
+							attributes: [
+								"id",
+								"name",
+								"isVegan",
+								"isKosher",
+								"isHalal",
+								"isDairyFree",
+								"isGlutenFree",
+								"isNutFree",
+								"isVegetarian",
+							],
+							through: { attributes: ["rating"] },
+						},
 					],
 				});
 				res.send(users);
