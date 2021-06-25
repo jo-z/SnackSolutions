@@ -9,8 +9,8 @@ const Rating = require("./models/Rating");
 const Member = require("./models/Member");
 //associations could go here!
 
-Group.belongsToMany(User, Member);
-User.belongsToMany(Group, Member);
+Group.belongsToMany(User, { through: Member });
+User.belongsToMany(Group, { through: Member });
 
 Snack.belongsToMany(User, { through: Rating });
 User.belongsToMany(Snack, { through: Rating });
