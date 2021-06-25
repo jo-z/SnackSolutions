@@ -1,4 +1,6 @@
-const { User } = require("../db");
+const {
+	models: { User },
+} = require("../db");
 
 //store all our functions that will act as middleware between our request and our response and we will use it as we see fit
 

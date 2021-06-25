@@ -32,7 +32,7 @@ User.prototype.correctPassword = function (candidatePwd) {
 };
 
 User.prototype.generateToken = function () {
-	return jwt.sign({ id: this.id }, process.env.JWT);
+	return jwt.sign({ id: this.id, groups: this.getGroups() }, process.env.JWT);
 };
 
 /**

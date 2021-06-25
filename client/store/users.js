@@ -13,8 +13,11 @@ const getUsersWithRatings = (users) => ({
 export const setUsersWithRatings = (groupId) => {
 	return async (dispatch) => {
 		try {
+			const token = window.localStorage.getItem("token");
 			const users = (
-				await axios.get(`/api/group/${groupId}/ratings`, { id: 1 })
+				await axios.get(`/api/group/${groupId}/ratings`, {
+					headers: { authorization: token },
+				})
 			).data;
 			users.sort((a, b) => a.id - b.id);
 			users.forEach((val) => {
