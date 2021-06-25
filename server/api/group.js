@@ -2,9 +2,9 @@ const router = require("express").Router();
 const {
 	models: { Group, User, Snack, Rating },
 } = require("../db");
-const {
-	/*requireToken*/
-} = require("./gatekeepingMiddleware");
+// const {
+// 	/*requireToken*/
+// } = require("./gatekeepingMiddleware");
 module.exports = router;
 
 //mounted on /api/groups
