@@ -22,5 +22,6 @@ module.exports = {
 		Snack,
 		Group,
 		Rating,
+		Member,
 	},
 };
