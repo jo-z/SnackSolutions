@@ -56,6 +56,10 @@ router.get(
 			// 		"You must be a member of a group to view it"
 			// 	);
 			// else res.send(group);
+			const group = await Group.findByPk(req.params.groupId, {
+				include: { model: User, attributes: ["id", "username"] },
+			});
+			res.send(group);
 		} catch (err) {
 			next(err);
 		}
