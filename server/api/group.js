@@ -15,8 +15,7 @@ router.get(
 	/*requireToken*/ async (req, res, next) => {
 		try {
 			const user = await User.findByPk(req.body.id);
-			const group = // await req.user.getGroups({
-			(
+			const group = ( // await req.user.getGroups({
 				await user.getGroups({
 					where: { id: req.params.groupId },
 					// include: { model: User },
@@ -45,17 +44,18 @@ router.get(
 	"/:groupId",
 	/*requireToken*/ async (req, res, next) => {
 		try {
-			const group = (
-				await req.user.getGroups({
-					where: { groupId: req.params.groupId },
-					// include: { model: User },
-				})
-			)[0];
-			if (!group.id)
-				res.status(403).send(
-					"You must be a member of a group to view it"
-				);
-			else res.send(group);
+			// const user = await User.findByPk(req.body.id);
+			// const group = ( // await req.user.getGroups({
+			// 	await user.getGroups({
+			// 		where: { id: req.params.groupId },
+			// 		// include: { model: User },
+			// 	})
+			// )[0];
+			// if (!group.id)
+			// 	res.status(403).send(
+			// 		"You must be a member of a group to view it"
+			// 	);
+			// else res.send(group);
 		} catch (err) {
 			next(err);
 		}
