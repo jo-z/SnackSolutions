@@ -1,9 +1,9 @@
-const { Sequelize } = require("sequelize/types");
+const Sequelize = require("sequelize");
 const db = require("../db");
 
 const Group = db.define("group", {
 	name: {
-		type: Sequelize.STRING,
+		type: Sequelize.DataTypes.STRING,
 		allowNull: false,
 	},
 });

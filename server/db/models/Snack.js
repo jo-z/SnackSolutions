@@ -1,37 +1,37 @@
-const { Sequelize } = require("sequelize/types");
+const Sequelize = require("sequelize");
 const db = require("../db");
 
 const Snack = db.define("snack", {
 	name: {
-		type: Sequelize.STRING,
+		type: Sequelize.DataTypes.STRING,
 		allowNull: false,
 	},
 	isVegan: {
-		type: Sequelize.BOOLEAN,
+		type: Sequelize.DataTypes.BOOLEAN,
 		defaultValue: false,
 	},
 	isKosher: {
-		type: Sequelize.BOOLEAN,
+		type: Sequelize.DataTypes.BOOLEAN,
 		defaultValue: false,
 	},
 	isHalal: {
-		type: Sequelize.BOOLEAN,
+		type: Sequelize.DataTypes.BOOLEAN,
 		defaultValue: false,
 	},
 	isDairyFree: {
-		type: Sequelize.BOOLEAN,
+		type: Sequelize.DataTypes.BOOLEAN,
 		defaultValue: false,
 	},
 	isNutFree: {
-		type: Sequelize.BOOLEAN,
+		type: Sequelize.DataTypes.BOOLEAN,
 		defaultValue: false,
 	},
 	isGlutenFree: {
-		type: Sequelize.BOOLEAN,
+		type: Sequelize.DataTypes.BOOLEAN,
 		defaultValue: false,
 	},
 	isVegetarian: {
-		type: Sequelize.BOOLEAN,
+		type: Sequelize.DataTypes.BOOLEAN,
 		defaultValue: false,
 	},
 });
