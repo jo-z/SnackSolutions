@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setUsersWithRatings } from "../store/users";
-
+import knapsackAlgo from "../algorhythms/knapsack";
 export class Group extends React.Component {
 	constructor(props) {
 		super(props);
@@ -15,6 +15,8 @@ export class Group extends React.Component {
 	render() {
 		console.log(this.props);
 		const users = this.props.users || [];
+		console.log("users", users);
+
 		return (
 			<div className="user-list">
 				{users.map((val) => (
@@ -28,7 +30,7 @@ export class Group extends React.Component {
 						<div key={val.id}>{val.join(", ")}</div>
 					))}
 				</div>
-				<button /*onClick={knapsackProblem}*/>
+				<button onClick={() => knapsackAlgo(users, 20)}>
 					Find Your Snack Solution!
 				</button>
 			</div>
