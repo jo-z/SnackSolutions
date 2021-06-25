@@ -398,6 +398,6 @@ const rawRatingData = [
 	{ rating: 5 },
 	{ rating: 4 },
 	{ rating: 2 },
-	{ rating: 2 },
+	// { rating: 2 },
 ];
 module.exports = rawRatingData;
