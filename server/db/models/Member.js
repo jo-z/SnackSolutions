@@ -3,9 +3,9 @@ const db = require("../db");
 
 const Member = db.define("member", {
 	isOwner: {
-		type: Sequelize.DataTypes.Boolean,
+		type: Sequelize.DataTypes.BOOLEAN,
 		defaultValue: false,
 	},
 });
 
-module.export(Member);
+module.exports = Member;
