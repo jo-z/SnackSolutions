@@ -5,6 +5,9 @@ import { setUsersWithRatings } from "../store/users";
 export class Group extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			snackList: [],
+		};
 	}
 	componentDidMount() {
 		this.props.getUsers(1 /*replace with groupId variable later*/);
@@ -19,6 +22,15 @@ export class Group extends React.Component {
 						<h2>{val.username}</h2>
 					</div>
 				))}
+				<div id="snack-list">
+					<p>Your group's ideal snacks are:</p>
+					{this.state.snackList.map((val) => (
+						<div key={val.id}>{val.join(", ")}</div>
+					))}
+				</div>
+				<button /*onClick={knapsackProblem}*/>
+					Find Your Snack Solution!
+				</button>
 			</div>
 		);
 	}
