@@ -33,12 +33,6 @@ export default (users, maxSnacks, threshold = 5) => {
 						(val) => val.snacks[row - 1].rating.rating >= threshold
 					)
 				);
-			console.log(
-				"people satisfied:",
-				SatisfiedWithSnack.peopleUnsatisfied.filter(
-					(val) => val.snacks[row - 1].rating.rating >= threshold
-				)
-			);
 			if (
 				SatisfiedWithSnack.peopleSatisfied.length >
 				SatisfiedWithoutSnack.peopleSatisfied.length
@@ -48,8 +42,8 @@ export default (users, maxSnacks, threshold = 5) => {
 						(val) => val.snacks[row - 1].rating.rating < threshold
 					);
 				SatisfiedWithSnack.snacks.push({
-					id: users[0].snacks[col - 1].id,
-					name: users[0].snacks[col - 1].name,
+					id: users[0].snacks[row - 1].id,
+					name: users[0].snacks[row - 1].name,
 				});
 				peopleSatisfiedMatrix[row][col] = SatisfiedWithSnack;
 			} else peopleSatisfiedMatrix[row][col] = SatisfiedWithoutSnack;
