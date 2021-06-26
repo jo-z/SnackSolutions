@@ -13,9 +13,9 @@ export class Group extends React.Component {
 		this.props.getUsers(1 /*replace with groupId variable later*/);
 	}
 	render() {
-		console.log(this.props);
+		// console.log(this.props);
 		const users = this.props.users || [];
-		console.log("users", users);
+		// console.log("users", users);
 
 		return (
 			<div className="user-list">
