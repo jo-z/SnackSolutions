@@ -53,7 +53,7 @@ export class Group extends React.Component {
 				</div>
 				<div id="snack-list">
 					<p>
-						Your group's ideal snacks are:
+						Your group's ideal snack combination is:
 						{this.state.snackList.join(", ")}
 					</p>
 				</div>
