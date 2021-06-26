@@ -19,6 +19,10 @@ form div {
 	margin: 1em;
 	display: inline-block;
 }
-/* .user-list {
+.user-list {
 	display: flex;
-} */
+	flex-wrap: wrap;
+}
+.user {
+	margin: 1rem;
+}

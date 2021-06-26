@@ -18,12 +18,14 @@ export class Group extends React.Component {
 		// console.log("users", users);
 
 		return (
-			<div className="user-list">
-				{users.map((val) => (
-					<div className="user" key={val.id}>
-						<h2>{val.username}</h2>
-					</div>
-				))}
+			<div>
+				<div className="user-list">
+					{users.map((val) => (
+						<div className="user" key={val.id}>
+							<h2>{val.username}</h2>
+						</div>
+					))}
+				</div>
 				<div id="snack-list">
 					<p>Your group's ideal snacks are:</p>
 					{this.state.snackList.map((val) => (
