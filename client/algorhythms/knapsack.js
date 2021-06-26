@@ -50,4 +50,5 @@ export default (users, maxSnacks, threshold = 5) => {
 		}
 	}
 	console.log(peopleSatisfiedMatrix);
+	return peopleSatisfiedMatrix;
 };

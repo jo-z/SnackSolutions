@@ -6,11 +6,36 @@ export class Group extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			snackMatrix: [],
 			snackList: [],
+			mostPopularSnack: [],
 		};
 	}
 	componentDidMount() {
 		this.props.getUsers(1 /*replace with groupId variable later*/);
+	}
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.snackMatrix !== this.state.snackMatrix) {
+			console.log("state", this.state);
+			for (let i = 0; i < this.state.snackMatrix.length - 1; i++) {
+				if (
+					this.state.snackMatrix[this.state.snackMatrix.length - 1][i]
+						.peopleSatisfied.length === this.props.users.length
+				) {
+					this.setState({
+						snackList: this.state.snackMatrix[
+							this.state.snackMatrix.length - 1
+						][i].snacks.map((val) => val.name),
+					});
+					break;
+				}
+			}
+			this.setState({
+				mostPopularSnack:
+					this.state.snackMatrix[this.state.snackMatrix.length - 1][1]
+						.snacks[0].name,
+			});
+		}
 	}
 	render() {
 		// console.log(this.props);
@@ -27,12 +52,22 @@ export class Group extends React.Component {
 					))}
 				</div>
 				<div id="snack-list">
-					<p>Your group's ideal snacks are:</p>
-					{this.state.snackList.map((val) => (
-						<div key={val.id}>{val.join(", ")}</div>
-					))}
+					<p>
+						Your group's ideal snacks are:
+						{this.state.snackList.join(", ")}
+					</p>
 				</div>
-				<button onClick={() => knapsackAlgo(users, 20)}>
+				<div>
+					<p>
+						The most popular snack in your group is:{" "}
+						{this.state.mostPopularSnack}
+					</p>
+				</div>
+				<button
+					onClick={() => {
+						this.setState({ snackMatrix: knapsackAlgo(users, 20) });
+					}}
+				>
 					Find Your Snack Solution!
 				</button>
 			</div>
