@@ -4,7 +4,7 @@ import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Groups from "./components/Groups";
 import Home from "./components/Home";
-import { Ratings } from "./components/Ratings";
+import Ratings from "./components/Ratings";
 import { me } from "./store";
 
 /**
