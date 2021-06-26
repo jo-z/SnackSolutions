@@ -32,7 +32,7 @@ router.put("/:snackId", requireToken, async (req, res, next) => {
 			},
 		});
 		if (rating === null) {
-			const user = await User.findByPk(req.body.id);
+			const user = await User.findByPk(req.user.id);
 			const snack = await Snack.findByPk(req.params.snackId);
 			rating = await user.addSnack(snack, {
 				through: { rating: req.body.rating },
