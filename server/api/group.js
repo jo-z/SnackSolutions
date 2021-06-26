@@ -10,10 +10,8 @@ module.exports = router;
 //get routes:
 router.get("/:groupId/ratings", requireToken, async (req, res, next) => {
 	try {
-		console.log(req.body);
 		// const user = await User.findByPk(req.id);
-		const group = // await req.user.getGroups({
-		(
+		const group = ( // await req.user.getGroups({
 			await req.user.getGroups({
 				where: { id: req.params.groupId },
 				// include: { model: User },

@@ -1,5 +1,4 @@
 export default (users, maxSnacks, threshold = 5) => {
-	console.log(users);
 	const peopleSatisfiedMatrix = [];
 	for (let row = 0; row <= users[0].snacks.length; row++) {
 		peopleSatisfiedMatrix.push([

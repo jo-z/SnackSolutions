@@ -16,7 +16,6 @@ export class Group extends React.Component {
 	}
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState.snackMatrix !== this.state.snackMatrix) {
-			console.log("state", this.state);
 			for (let i = 0; i < this.state.snackMatrix.length - 1; i++) {
 				if (
 					this.state.snackMatrix[this.state.snackMatrix.length - 1][i]
@@ -38,10 +37,7 @@ export class Group extends React.Component {
 		}
 	}
 	render() {
-		// console.log(this.props);
 		const users = this.props.users || [];
-		// console.log("users", users);
-
 		return (
 			<div>
 				<div className="user-list">
