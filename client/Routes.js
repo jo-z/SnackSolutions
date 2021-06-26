@@ -23,7 +23,11 @@ class Routes extends Component {
 				{isLoggedIn ? (
 					<Switch>
 						<Route path="/home" component={Home} />
-						<Route path="/groups" component={SingleGroup} />
+						<Route exact path="/groups" component={SingleGroup} />
+						<Route
+							path="/groups/:groupId"
+							component={SingleGroup}
+						/>
 						<Route path="/ratings" component={Ratings} />
 						<Redirect to="/home" />
 					</Switch>

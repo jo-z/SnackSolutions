@@ -12,7 +12,7 @@ export class Group extends React.Component {
 		};
 	}
 	componentDidMount() {
-		this.props.getUsers(1 /*replace with groupId variable later*/);
+		this.props.getUsers(this.props.match.params.groupId);
 	}
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState.snackMatrix !== this.state.snackMatrix) {
