@@ -3,6 +3,12 @@ import { connect } from "react-redux";
 import { getUsersRatings } from "../store/ratings";
 
 export class Ratings extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	componentDidMount() {
+		this.props.getRatings();
+	}
 	render() {
 		return <p>hello!</p>;
 	}
