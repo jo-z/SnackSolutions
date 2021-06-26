@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { getUsersRatings } from "../store/ratings";
 
 export class Ratings extends React.Component {
 	render() {
@@ -7,4 +8,8 @@ export class Ratings extends React.Component {
 	}
 }
 
-export default connect(null, null)(Ratings);
+const mapState = (state) => ({ ratings: state.ratings });
+const mapDispatch = (dispatch) => ({
+	getRatings: () => dispatch(getUsersRatings()),
+});
+export default connect(mapState, mapDispatch)(Ratings);
