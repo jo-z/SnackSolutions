@@ -28,9 +28,13 @@ export const getUsersRatings = () => {
 export const updateRating = (snackId, rating) => {
 	return async (dispatch) => {
 		try {
-			const updatedRating = (await axios.put(`/api/rating/${snackId}`),
-			{ rating },
-			{ headers: { authorization: token } }).data;
+			const updatedRating = (
+				await axios.put(
+					`/api/rating/${snackId}`,
+					{ rating },
+					{ headers: { authorization: token } }
+				)
+			).data;
 			dispatch(_updateRating(updatedRating));
 		} catch (err) {
 			console.error(err);
@@ -45,8 +49,8 @@ export default function (state = [], action) {
 			return action.ratings;
 		case UPDATE_RATING:
 			return state.map((val) => {
-				if (val.id == action.updatedRating.snackId) {
-					return { ...val, rating: action.updateRating };
+				if (val.id == action.rating.snackId) {
+					return { ...val, rating: action.rating };
 				} else return val;
 			});
 		default:
