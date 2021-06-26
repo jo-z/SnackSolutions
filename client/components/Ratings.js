@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getUsersRatings } from "../store/ratings";
+import RatingPanel from "./RatingPanel";
 
 export class Ratings extends React.Component {
 	constructor(props) {
@@ -10,7 +11,9 @@ export class Ratings extends React.Component {
 		this.props.getRatings();
 	}
 	render() {
-		return <p>hello!</p>;
+		return this.props.ratings.map((val) => {
+			return <RatingPanel key={val.id} snack={val} />;
+		});
 	}
 }
 
