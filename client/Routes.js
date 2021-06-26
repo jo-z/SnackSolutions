@@ -6,6 +6,7 @@ import SingleGroup from "./components/SingleGroup";
 import Home from "./components/Home";
 import Ratings from "./components/Ratings";
 import { me } from "./store";
+import GroupList from "./components/GroupList";
 
 /**
  * COMPONENT
@@ -23,7 +24,7 @@ class Routes extends Component {
 				{isLoggedIn ? (
 					<Switch>
 						<Route path="/home" component={Home} />
-						<Route exact path="/groups" component={SingleGroup} />
+						<Route exact path="/groups" component={GroupList} />
 						<Route
 							path="/groups/:groupId"
 							component={SingleGroup}
