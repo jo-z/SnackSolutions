@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
-import Groups from "./components/Groups";
+import SingleGroup from "./components/SingleGroup";
 import Home from "./components/Home";
 import Ratings from "./components/Ratings";
 import { me } from "./store";
@@ -23,7 +23,7 @@ class Routes extends Component {
 				{isLoggedIn ? (
 					<Switch>
 						<Route path="/home" component={Home} />
-						<Route path="/groups" component={Groups} />
+						<Route path="/groups" component={SingleGroup} />
 						<Route path="/ratings" component={Ratings} />
 						<Redirect to="/home" />
 					</Switch>
