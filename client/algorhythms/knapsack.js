@@ -23,23 +23,27 @@ export default (users, maxSnacks, threshold = 5) => {
 			holder = peopleSatisfiedMatrix[row - 1][col - 1];
 			const SatisfiedWithSnack = {
 				peopleSatisfied: [...holder.peopleSatisfied],
-				peopleUnsatisfied: [...holder.peopleUnsatisfied],
+				peopleUnsatisfied: [],
 				snacks: [...holder.snacks],
 			};
-			SatisfiedWithSnack.peopleSatisfied =
-				SatisfiedWithSnack.peopleSatisfied.concat(
-					SatisfiedWithSnack.peopleUnsatisfied.filter(
-						(val) => val.snacks[row - 1].rating.rating >= threshold
-					)
-				);
+
+			for (let i = 0; i < holder.peopleUnsatisfied.length; i++) {
+				if (
+					holder.peopleUnsatisfied[i].snacks[row - 1].rating.rating >=
+					threshold
+				)
+					SatisfiedWithSnack.peopleSatisfied.push(
+						holder.peopleUnsatisfied[i]
+					);
+				else
+					SatisfiedWithSnack.peopleUnsatisfied.push(
+						holder.peopleUnsatisfied[i]
+					);
+			}
 			if (
 				SatisfiedWithSnack.peopleSatisfied.length >
 				SatisfiedWithoutSnack.peopleSatisfied.length
 			) {
-				SatisfiedWithSnack.peopleUnsatisfied =
-					SatisfiedWithSnack.peopleUnsatisfied.filter(
-						(val) => val.snacks[row - 1].rating.rating < threshold
-					);
 				SatisfiedWithSnack.snacks.push({
 					id: users[0].snacks[row - 1].id,
 					name: users[0].snacks[row - 1].name,
