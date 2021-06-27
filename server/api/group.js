@@ -84,3 +84,15 @@ router.put(
 		}
 	}
 );
+
+//post routes
+router.post("/", requireToken, async (req, res, next) => {
+	try {
+		const newGroup = await Group.create({ name: req.body.name });
+		newGroup.addUser(req.user, { through: { isOwner: true } });
+		console.log(newGroup);
+		res.json(newGroup);
+	} catch (err) {
+		next(err);
+	}
+});
