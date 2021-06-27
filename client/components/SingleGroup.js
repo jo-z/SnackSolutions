@@ -42,10 +42,14 @@ export class Group extends React.Component {
 		}
 	}
 	render() {
-		const users = this.props.users || [];
+		const users = this.props.users || [{ groups: [{}] }];
 		const isMember = this.props.membership.isMember || false;
+		const isOwner = this.props.membership.isOwner || false;
+
+		// const name = users[0].groups[0].name || "";
 		return isMember ? (
 			<div>
+				{users[0] ? <h2>{users[0].groups[0].name}</h2> : ""}
 				<div className="user-list">
 					{users.map((val) => (
 						<div className="user" key={val.id}>
