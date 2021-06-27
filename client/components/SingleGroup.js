@@ -79,7 +79,14 @@ export class Group extends React.Component {
 				>
 					Find Your Snack Solution!
 				</button>
-				{users[0] ? <GroupFrom type={EDIT} /> : ""}
+				{users[0] ? (
+					<GroupFrom
+						type={EDIT}
+						groupId={this.props.match.params.groupId}
+					/>
+				) : (
+					""
+				)}
 			</div>
 		) : (
 			<p>You must be a member of a group to view it</p>
