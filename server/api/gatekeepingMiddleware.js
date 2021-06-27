@@ -15,6 +15,22 @@ const requireToken = async (req, res, next) => {
 	}
 };
 
+const checkMembership = async (req, res, next) => {
+	try {
+		const group = (
+			await req.user.getGroups({ where: { id: req.params.groupId } })
+		)[0];
+		let membership = {};
+		if (group)
+			membership = { isMember: true, isOwner: group.member.isOwner };
+		else membership = { isMember: false, isOwner: false };
+		req.group = group;
+		req.membership = membership;
+		next();
+	} catch (err) {
+		next(err);
+	}
+};
 const isAdmin = (req, res, next) => {
 	//if we managed to make it past require token, we can guarantee we have a user
 	//we have access to req.user
@@ -28,4 +44,5 @@ const isAdmin = (req, res, next) => {
 module.exports = {
 	requireToken,
 	isAdmin,
+	checkMembership,
 };
