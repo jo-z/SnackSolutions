@@ -13,7 +13,7 @@ class RateSnacks extends React.Component {
 			return (
 				<RatingPanel
 					key={val.id}
-					snack={{ ...val, rating: { rating: null } }}
+					snack={{ ...val, rating: { rating: "" } }}
 				/>
 			);
 		});
