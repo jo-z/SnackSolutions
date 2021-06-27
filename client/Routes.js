@@ -4,7 +4,7 @@ import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import SingleGroup from "./components/SingleGroup";
 import Home from "./components/Home";
-import Ratings from "./components/Ratings";
+import UpdateRatings from "./components/UpdateRatings";
 import { me } from "./store";
 import GroupList from "./components/GroupList";
 
@@ -29,7 +29,7 @@ class Routes extends Component {
 							path="/groups/:groupId"
 							component={SingleGroup}
 						/>
-						<Route path="/ratings" component={Ratings} />
+						<Route path="/ratings" component={UpdateRatings} />
 						<Redirect to="/home" />
 					</Switch>
 				) : (
