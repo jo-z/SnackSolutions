@@ -2,7 +2,6 @@ const router = require("express").Router();
 const {
 	models: { Rating, User, Snack },
 } = require("../db");
-const { Op } = require("sequelize");
 const { requireToken } = require("./gatekeepingMiddleware");
 module.exports = router;
 
@@ -23,7 +22,7 @@ router.get("/unrated", requireToken, async (req, res, next) => {
 		});
 		res.send(snacks);
 	} catch (err) {
-		console.error(err);
+		next(err);
 	}
 });
 
