@@ -63,7 +63,7 @@ export class Group extends React.Component {
 						{this.state.snackList.join(", ")}
 					</p>
 				</div>
-				<div>
+				<div id="most-popular-snack">
 					<p>
 						The most popular snack in your group is:{" "}
 						{this.state.mostPopularSnack}
@@ -73,6 +73,7 @@ export class Group extends React.Component {
 					onClick={() => {
 						this.setState({ snackMatrix: knapsackAlgo(users, 20) });
 					}}
+					id="snack-solution-button"
 				>
 					Find Your Snack Solution!
 				</button>
