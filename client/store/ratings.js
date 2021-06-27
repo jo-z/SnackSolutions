@@ -3,7 +3,7 @@ const token = window.localStorage.getItem("token");
 
 //action types
 const SET_USERS_RATINGS = "SET_USERS_RATINGS";
-const UPDATE_RATING = "UPDATE_RATING";
+export const UPDATE_RATING = "UPDATE_RATING";
 
 //action creators
 const setUsersRatings = (ratings) => ({ type: SET_USERS_RATINGS, ratings });

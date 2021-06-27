@@ -1,4 +1,5 @@
 import axios from "axios";
+import { UPDATE_RATING } from "./ratings";
 const token = window.localStorage.getItem("token");
 
 //action types
@@ -28,6 +29,8 @@ export default function (state = [], action) {
 	switch (action.type) {
 		case GET_UNRATED_SNACKS:
 			return action.snacks;
+		case UPDATE_RATING:
+			return state.filter((val) => val.id !== action.rating[0].snackId);
 		default:
 			return state;
 	}
