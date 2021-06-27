@@ -5,6 +5,7 @@ import { Login, Signup } from "./components/AuthForm";
 import SingleGroup from "./components/SingleGroup";
 import Home from "./components/Home";
 import UpdateRatings from "./components/UpdateRatings";
+import RateSnacks from "./components/RateSnacks";
 import { me } from "./store";
 import GroupList from "./components/GroupList";
 
@@ -29,7 +30,11 @@ class Routes extends Component {
 							path="/groups/:groupId"
 							component={SingleGroup}
 						/>
-						<Route path="/ratings" component={UpdateRatings} />
+						<Route
+							path="/ratings/update"
+							component={UpdateRatings}
+						/>
+						<Route path="/ratings/rate" component={RateSnacks} />
 						<Redirect to="/home" />
 					</Switch>
 				) : (
