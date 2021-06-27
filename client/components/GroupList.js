@@ -10,20 +10,25 @@ class GroupList extends React.Component {
 	}
 	render() {
 		const groups = this.props.groups || [];
+		const users = this.props.users || [];
 		return (
-			<div>
+			<div id="group-list">
 				{groups.map((group) => (
-					<Link to={`/groups/${group.id}`} key={group.id}>
+					<Link
+						to={`/groups/${group.id}`}
+						key={group.id}
+						className="group"
+					>
 						{group.name}
 					</Link>
 				))}
-				<GroupFrom type={CREATE} />
+				{users[0] ? <GroupFrom type={CREATE} /> : ""}
 			</div>
 		);
 	}
 }
 
-const mapState = (state) => ({ groups: state.groups });
+const mapState = (state) => ({ groups: state.groups, users: state.users });
 const mapDispatch = (dispatch) => ({
 	getGroups: () => dispatch(getGroupList()),
 });
