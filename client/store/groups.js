@@ -1,28 +1,47 @@
 import axios from "axios";
-import { next } from "cheerio/lib/api/traversing";
+const token = window.localStorage.getItem("token");
+const authorization = {
+	headers: { authorization: token },
+};
 
 //action types
 const SET_GROUP_LIST = "SET_GROUP_LIST";
+export const UPDATE_GROUP = "UPDATE GROUP";
 
 //action creators
 const setGroupList = (groups) => ({
 	type: SET_GROUP_LIST,
 	groups,
 });
+const _updateGroup = (group) => ({
+	type: UPDATE_GROUP,
+	group,
+});
 
 //thunks
 export const getGroupList = () => {
 	return async (dsipatch) => {
 		try {
-			const token = window.localStorage.getItem("token");
-			const groups = (
-				await axios.get("/api/group/", {
-					headers: { authorization: token },
-				})
-			).data;
+			const groups = (await axios.get("/api/group/", authorization)).data;
 			dsipatch(setGroupList(groups));
 		} catch (err) {
-			next(err);
+			console.error(err);
+		}
+	};
+};
+export const updateGroup = (group) => {
+	return async (dispatch) => {
+		try {
+			const group = (
+				await axios.put(
+					"/api/group/",
+					{ name: group.name },
+					authorization
+				)
+			).data;
+			dispatch(updateGroup(group));
+		} catch (err) {
+			console.error(err);
 		}
 	};
 };

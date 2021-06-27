@@ -1,4 +1,5 @@
 import axios from "axios";
+import { UPDATE_GROUP } from "./groups";
 
 //action types
 const GET_USERS_WITH_RATINGS = "GET_USERS_WITH_RATINGS";
@@ -35,6 +36,11 @@ export default function (state = [], action) {
 	switch (action.type) {
 		case GET_USERS_WITH_RATINGS:
 			return action.users;
+		case UPDATE_GROUP:
+			return state.map((val) => {
+				val.groups[0] = action.group;
+				return val;
+			});
 		default:
 			return state;
 	}
