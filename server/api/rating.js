@@ -2,12 +2,31 @@ const router = require("express").Router();
 const {
 	models: { Rating, User, Snack },
 } = require("../db");
+const { Op } = require("sequelize");
 const { requireToken } = require("./gatekeepingMiddleware");
 module.exports = router;
 
 //mounted on /api/rating
 
 //get routes
+router.get("/unrated", requireToken, async (req, res, next) => {
+	try {
+		const snacks = await Snack.findAll({
+			include: {
+				model: User,
+				where: {
+					id: req.user.id,
+				},
+				required: false,
+				attributes: [],
+			},
+		});
+		res.send(snacks);
+	} catch (err) {
+		console.error(err);
+	}
+});
+
 router.get("/", requireToken, async (req, res, next) => {
 	try {
 		const ratings = await User.findByPk(req.user.id, {
