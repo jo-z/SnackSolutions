@@ -70,6 +70,26 @@ router.get("/", requireToken, async (req, res, next) => {
 
 //put routes
 router.put(
+	"/addMember/:groupId",
+	requireToken,
+	checkMembership,
+	async (req, res, next) => {
+		try {
+			if (req.membership.isOwner) {
+				const member = await User.findOne({
+					where: { name: req.body.name },
+				});
+				res.json(member);
+			} else
+				res.status(403).json(
+					"You must be the group's owner to add members"
+				);
+		} catch (err) {
+			next(err);
+		}
+	}
+);
+router.put(
 	"/:groupId",
 	requireToken,
 	checkMembership,
