@@ -11,9 +11,14 @@ const Member = require("./models/Member");
 
 Group.belongsToMany(User, { through: Member });
 User.belongsToMany(Group, { through: Member });
+Member.belongsTo(User);
+Member.belongsTo(Group);
 
 Snack.belongsToMany(User, { through: Rating });
+Snack.hasMany(Rating);
 User.belongsToMany(Snack, { through: Rating });
+Rating.belongsTo(User);
+Rating.belongsTo(Snack);
 
 module.exports = {
 	db,
