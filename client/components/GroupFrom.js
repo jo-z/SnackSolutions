@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { updateGroup } from "../store/groups";
+import { updateGroup, createGroup } from "../store/groups";
 
 export const CREATE = "Create";
 export const EDIT = "Update"; //mismatch is for the button text
@@ -22,6 +22,7 @@ class GroupForm extends React.Component {
 		evt.preventDefault();
 		if (this.props.type === CREATE) {
 			// this.props.createCampus(this.state);
+			this.props.createGroup(this.state);
 			this.setState({
 				name: "",
 			});
@@ -61,6 +62,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
 	return {
 		// createCampus: (campus) => dispatch(createCampus(campus)),
+		createGroup: (group) => dispatch(createGroup(group)),
 		// editCampus: (campus) => dispatch(editCampus(campus)),
 		updateGroup: (groupId, group) => dispatch(updateGroup(groupId, group)),
 	};
