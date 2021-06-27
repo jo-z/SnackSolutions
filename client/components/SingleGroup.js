@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { setUsersWithRatings } from "../store/users";
 import knapsackAlgo from "../algorhythms/knapsack";
+import { getMembershipStatus } from "../store/membership";
 export class Group extends React.Component {
 	constructor(props) {
 		super(props);
@@ -12,7 +13,8 @@ export class Group extends React.Component {
 		};
 	}
 	componentDidMount() {
-		this.props.getUsers(this.props.match.params.groupId);
+		this.props.getMembership(this.props.match.params.groupId);
+		console.log(this.props);
 	}
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState.snackMatrix !== this.state.snackMatrix) {
@@ -34,6 +36,9 @@ export class Group extends React.Component {
 					this.state.snackMatrix[this.state.snackMatrix.length - 1][1]
 						.snacks[0].name,
 			});
+		}
+		if (prevProps.membership !== this.props.membership) {
+			this.props.getUsers(this.props.match.params.groupId);
 		}
 	}
 	render() {
@@ -71,11 +76,12 @@ export class Group extends React.Component {
 	}
 }
 const mapState = (state) => {
-	return { users: state.users };
+	return { users: state.users, membership: state.membership };
 };
 const mapDispatch = (dispatch) => {
 	return {
 		getUsers: (id) => dispatch(setUsersWithRatings(id)),
+		getMembership: (groupId) => dispatch(getMembershipStatus(groupId)),
 	};
 };
 export default connect(mapState, mapDispatch)(Group);
