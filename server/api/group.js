@@ -82,7 +82,27 @@ router.put(
 		try {
 			if (req.membership.isOwner) {
 				const member = await User.findOne({
-					where: { name: req.body.name },
+					where: { username: req.body.name },
+					order: [[{ model: Snack }, "id", "ASC"]],
+					attributes: ["id", "username"],
+					include: [
+						{
+							model: Snack,
+
+							attributes: [
+								"id",
+								"name",
+								"isVegan",
+								"isKosher",
+								"isHalal",
+								"isDairyFree",
+								"isGlutenFree",
+								"isNutFree",
+								"isVegetarian",
+							],
+							through: { attributes: ["rating"] },
+						},
+					],
 				});
 				res.json(member);
 			} else
