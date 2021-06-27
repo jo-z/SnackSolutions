@@ -104,6 +104,7 @@ router.put(
 						},
 					],
 				});
+				await member.addGroup(req.group);
 				res.json(member);
 			} else
 				res.status(403).json(
