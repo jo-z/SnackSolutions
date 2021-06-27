@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setUsersWithRatings } from "../store/users";
+import { addUserToGroup, setUsersWithRatings } from "../store/users";
 import knapsackAlgo from "../algorhythms/knapsack";
 import { getMembershipStatus } from "../store/membership";
 import { EDIT } from "./GroupFrom";
@@ -12,7 +12,17 @@ export class Group extends React.Component {
 			snackMatrix: [],
 			snackList: [],
 			mostPopularSnack: [],
+			name: "",
 		};
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+	handleChange(evt) {
+		this.setState({ [evt.target.name]: evt.target.value });
+	}
+	handleSubmit(evt) {
+		evt.preventDefault();
+		this.props.addUser(this.props.match.params.groupId, this.state.name);
 	}
 	componentDidMount() {
 		this.props.getMembership(this.props.match.params.groupId);
@@ -59,6 +69,20 @@ export class Group extends React.Component {
 						</div>
 					))}
 				</div>
+				{isOwner ? (
+					<form id="add-user-form" onSubmit={this.handleSubmit}>
+						<label htmlFor="name">Username</label>
+						<input
+							name="name"
+							value={this.state.name}
+							onChange={this.handleChange}
+							required
+						/>
+						<button type="submit">Add user</button>
+					</form>
+				) : (
+					""
+				)}
 				<div id="snack-list">
 					<p>
 						Your group's ideal snack combination is:
@@ -100,6 +124,7 @@ const mapDispatch = (dispatch) => {
 	return {
 		getUsers: (id) => dispatch(setUsersWithRatings(id)),
 		getMembership: (groupId) => dispatch(getMembershipStatus(groupId)),
+		addUser: (groupId, name) => dispatch(addUserToGroup(groupId, name)),
 	};
 };
 export default connect(mapState, mapDispatch)(Group);
