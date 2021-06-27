@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { setUsersWithRatings } from "../store/users";
 import knapsackAlgo from "../algorhythms/knapsack";
 import { getMembershipStatus } from "../store/membership";
+import { EDIT } from "./GroupFrom";
+import GroupFrom from "./GroupFrom";
 export class Group extends React.Component {
 	constructor(props) {
 		super(props);
@@ -77,6 +79,7 @@ export class Group extends React.Component {
 				>
 					Find Your Snack Solution!
 				</button>
+				{users[0] ? <GroupFrom type={EDIT} /> : ""}
 			</div>
 		) : (
 			<p>You must be a member of a group to view it</p>
