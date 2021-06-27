@@ -6,8 +6,15 @@ import auth from "./auth";
 import users from "./users";
 import ratings from "./ratings";
 import groups from "./groups";
+import unratedSnacks from "./unratedSnacks";
 
-const reducer = combineReducers({ auth, users, ratings, groups });
+const reducer = combineReducers({
+	auth,
+	users,
+	ratings,
+	groups,
+	unratedSnacks,
+});
 const middleware = composeWithDevTools(
 	applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
