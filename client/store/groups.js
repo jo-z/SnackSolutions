@@ -32,14 +32,14 @@ export const getGroupList = () => {
 export const updateGroup = (group) => {
 	return async (dispatch) => {
 		try {
-			const group = (
+			const newGroup = (
 				await axios.put(
 					"/api/group/",
 					{ name: group.name },
 					authorization
 				)
 			).data;
-			dispatch(updateGroup(group));
+			dispatch(_updateGroup(newGroup));
 		} catch (err) {
 			console.error(err);
 		}
