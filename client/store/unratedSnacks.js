@@ -13,7 +13,7 @@ export const getUnratedSnacks = () => {
 		try {
 			const snacks = (
 				await axios.get("/api/rating/unrated", {
-					headers: { authroization: token },
+					headers: { authorization: token },
 				})
 			).data;
 			dispatch(setUnratedSnacks(snacks));
