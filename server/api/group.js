@@ -32,7 +32,7 @@ router.get(
 						{
 							model: Group,
 							where: { id: req.params.groupId },
-							attributes: [],
+							attributes: ["name"],
 						},
 						{
 							model: Snack,
