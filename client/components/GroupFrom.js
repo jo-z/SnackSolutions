@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 export const CREATE = "Create";
-export const EDIT = "Edit";
+export const EDIT = "Update"; //mismatch is for the button text
 
 class GroupForm extends React.Component {
 	constructor(props) {
@@ -30,13 +30,12 @@ class GroupForm extends React.Component {
 	}
 	componentDidMount() {
 		if (this.props.type === EDIT) {
-			//fix this
 			const newState = { name: this.props.name };
 			this.setState(newState);
 		}
 	}
 	render() {
-		const { name, address, imageUrl, description } = this.state;
+		const { name } = this.state;
 		return (
 			<form id="group-form" onSubmit={this.handleSubmit}>
 				<label htmlFor="name">Name</label>
@@ -46,7 +45,7 @@ class GroupForm extends React.Component {
 					onChange={this.handleChange}
 					required
 				/>
-				<button type="submit">Submit</button>
+				<button type="submit">{this.props.type}</button>
 			</form>
 		);
 	}
