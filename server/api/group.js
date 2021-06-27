@@ -36,6 +36,7 @@ router.get(
 						},
 						{
 							model: Snack,
+
 							attributes: [
 								"id",
 								"name",
@@ -49,6 +50,10 @@ router.get(
 							],
 							through: { attributes: ["rating"] },
 						},
+					],
+					order: [
+						["id", "ASC"],
+						[{ model: Snack }, "id", "ASC"],
 					],
 				});
 				res.send(users);
