@@ -43,7 +43,8 @@ export class Group extends React.Component {
 	}
 	render() {
 		const users = this.props.users || [];
-		return (
+		const isMember = this.props.membership.isMember || false;
+		return isMember ? (
 			<div>
 				<div className="user-list">
 					{users.map((val) => (
@@ -72,6 +73,8 @@ export class Group extends React.Component {
 					Find Your Snack Solution!
 				</button>
 			</div>
+		) : (
+			<p>You must be a member of a group to view it</p>
 		);
 	}
 }
