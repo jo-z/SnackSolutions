@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getGroupList } from "../store/groups";
 import Link from "react-router-dom/Link";
-import GroupFrom, { CREATE } from "./GroupFrom";
+import GroupForm, { CREATE } from "./GroupForm";
 
 class GroupList extends React.Component {
 	componentDidMount() {
@@ -22,7 +22,7 @@ class GroupList extends React.Component {
 						{group.name}
 					</Link>
 				))}
-				{users[0] ? <GroupFrom type={CREATE} /> : ""}
+				{users[0] ? <GroupForm type={CREATE} /> : ""}
 			</div>
 		);
 	}

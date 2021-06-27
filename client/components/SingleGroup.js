@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { addUserToGroup, setUsersWithRatings } from "../store/users";
 import knapsackAlgo from "../algorhythms/knapsack";
 import { getMembershipStatus } from "../store/membership";
-import { EDIT } from "./GroupFrom";
-import GroupFrom from "./GroupFrom";
+import { EDIT } from "./GroupForm";
+import GroupForm from "./GroupForm";
 export class Group extends React.Component {
 	constructor(props) {
 		super(props);
@@ -104,7 +104,7 @@ export class Group extends React.Component {
 					Find Your Snack Solution!
 				</button>
 				{users[0] ? (
-					<GroupFrom
+					<GroupForm
 						type={EDIT}
 						groupId={this.props.match.params.groupId}
 					/>
