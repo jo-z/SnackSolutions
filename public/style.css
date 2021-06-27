@@ -1,3 +1,10 @@
+* {
+	color: #f49338;
+	background-color: #57159d;
+}
+/* h1 h2 h3 {
+	color: #f2f217;
+} */
 body {
 	font-family: sans-serif;
 }
@@ -19,10 +26,12 @@ form div {
 	margin: 1em;
 	display: inline-block;
 }
-.user-list {
+.user-list,
+.group-list {
 	display: flex;
 	flex-wrap: wrap;
 }
-.user {
+.user,
+.group {
 	margin: 1rem;
 }
