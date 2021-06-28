@@ -13,6 +13,7 @@ export class Group extends React.Component {
 			snackList: [],
 			mostPopularSnack: [],
 			name: "",
+			maxSnacks: 20,
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,7 +31,7 @@ export class Group extends React.Component {
 	}
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState.snackMatrix !== this.state.snackMatrix) {
-			for (let i = 0; i < this.state.snackMatrix.length - 1; i++) {
+			for (let i = 0; i <= this.state.maxSnacks; i++) {
 				if (
 					this.state.snackMatrix[this.state.snackMatrix.length - 1][i]
 						.peopleSatisfied.length === this.props.users.length
@@ -95,9 +96,25 @@ export class Group extends React.Component {
 						{this.state.mostPopularSnack}
 					</p>
 				</div>
+
+				<label htmlFor="maxSnacks">Max number of Snacks:</label>
+				<input
+					name="maxSnacks"
+					value={this.state.maxSnacks}
+					onChange={this.handleChange}
+					type="number"
+					min="1"
+					step="1"
+				/>
+
 				<button
 					onClick={() => {
-						this.setState({ snackMatrix: knapsackAlgo(users, 20) });
+						this.setState({
+							snackMatrix: knapsackAlgo(
+								users,
+								this.state.maxSnacks
+							),
+						});
 					}}
 					id="snack-solution-button"
 				>
