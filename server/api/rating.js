@@ -11,12 +11,6 @@ module.exports = router;
 //get routes
 router.get("/unrated", requireToken, async (req, res, next) => {
 	try {
-		// const snacks = await req.user.getSnacks({
-		// 	through: {
-		// 		where: { userId: { [Op.ne]: req.user.id } },
-		// 	},
-		// });
-
 		//query ratings table for userId, find all snacks with ids not in result
 		const snackIds = (
 			await Rating.findAll({
@@ -28,14 +22,6 @@ router.get("/unrated", requireToken, async (req, res, next) => {
 			where: { id: { [Op.notIn]: snackIds } },
 			order: [["id", "ASC"]],
 		});
-		// const snacks = await Snack.findAll({
-		// 	include: {
-		// 		model: User,
-		// 		through: {
-		// 			where: { userId: { [Op.ne]: req.user.id } },
-		// 		},
-		// 	},
-		// });
 		res.send(snacks);
 	} catch (err) {
 		next(err);

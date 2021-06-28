@@ -14,13 +14,6 @@ router.get(
 	checkMembership,
 	async (req, res, next) => {
 		try {
-			// const user = await User.findByPk(req.id);
-			// const group = ( // await req.user.getGroups({
-			// 	await req.user.getGroups({
-			// 		where: { id: req.params.groupId },
-			// 		// include: { model: User },
-			// 	})
-			// )[0];
 			if (!req.membership.isMember)
 				res.status(403).send(
 					"You must be a member of a group to view it"
@@ -121,10 +114,11 @@ router.put(
 	checkMembership,
 	async (req, res, next) => {
 		try {
-			if (req.membership.isMember) {
+			if (req.membership.isOwner) {
 				await req.group.update({ name: req.body.name });
 				res.json(req.group);
-			} else res.status("403").send("You must be a member");
+			} else
+				res.status("403").send("You must be an owner to edit a group");
 		} catch (err) {
 			next(err);
 		}
