@@ -103,7 +103,7 @@ export class Group extends React.Component {
 				>
 					Find Your Snack Solution!
 				</button>
-				{users[0] ? (
+				{users[0] && isOwner ? (
 					<GroupForm
 						type={EDIT}
 						groupId={this.props.match.params.groupId}
