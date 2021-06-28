@@ -1,7 +1,6 @@
 const router = require("express").Router();
 module.exports = router;
 
-router.use("/users", require("./users"));
 router.use("/snacks", require("./snacks"));
 router.use("/rating", require("./rating"));
 router.use("/group", require("./group"));
